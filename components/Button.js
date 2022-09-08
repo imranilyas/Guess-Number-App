@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
     btnContainer: {
         backgroundColor: 'hsl(231, 100%, 19%)',
         alignSelf: 'center',
-        borderRadius: 10000
+        borderRadius: 10000,
+        flex: 1,
+        marginHorizontal: 20
     },
 
     btnPressed: {
