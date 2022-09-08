@@ -7,7 +7,7 @@ export default function App() {
   return (
     <LinearGradient style={styles.container} colors={['hsl(231, 100%, 19%)', '#00d9e4']}>
       <ImageBackground source={require('./assets/images/glitter.jpg')} style={styles.container} imageStyle = {styles.backgroundImg}>
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, styles.space]}>
           <StatusBar style="light" />
           <StartScreen />
         </SafeAreaView>
@@ -25,5 +25,10 @@ const styles = StyleSheet.create({
     opacity: 0.2,
     height: '100%',
     width: '100%',
-  }
+  },
+
+  space: {
+    margin: 20,
+  },
+
 });
