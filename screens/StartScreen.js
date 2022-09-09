@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {View, StyleSheet, Text, TextInput, Alert} from 'react-native';
 
 import Button from '../components/Button';
@@ -5,8 +6,14 @@ import Title from '../components/Title';
 
 const StartScreen = () => {
 
+    const [myNumber, setMyNumber] = useState('');
+
+    const enterNumberHandler = (element) => {
+        setMyNumber(element);
+    }
+
     const pressing = () => {
-        console.log("Button Pressed");
+        setMyNumber('');
     }
 
     return (
@@ -17,7 +24,9 @@ const StartScreen = () => {
                 {/* Input for number */}
                 <Text>Enter a Number</Text>
                 <View style={styles.textContainer}>
-                    <TextInput keyboardType='number-pad' keyboardAppearance='dark' maxLength={2} style={styles.input} selectionColor='white'/>
+                    <TextInput value={myNumber} onChangeText={enterNumberHandler} 
+                    keyboardType='number-pad' keyboardAppearance='dark' maxLength={2} 
+                    style={styles.input} selectionColor='white'/>
                 </View>
                 <View style = {styles.btnContainer}>
                     {/* Contains the buttons in a row */}
