@@ -12,8 +12,22 @@ const StartScreen = () => {
         setMyNumber(element);
     }
 
-    const pressing = () => {
+    const resetNumberHandler = () => {
         setMyNumber('');
+    }
+
+    //! Will eventually switch to GameScreen by passing number
+    //! Must add alerts
+    const startHandler = () => {
+        console.log("Start the game");
+        if(isNaN(myNumber) || myNumber <= 0 || myNumber > 99) {
+            console.log(false);
+            Alert.alert(
+                'Invalid Number', 'Please enter a number between 1 and 99',
+                [{text: 'Dismiss', onPress: resetNumberHandler, style: 'cancel'}]
+            );
+        }
+        let n = Number(myNumber);
     }
 
     return (
@@ -30,8 +44,8 @@ const StartScreen = () => {
                 </View>
                 <View style = {styles.btnContainer}>
                     {/* Contains the buttons in a row */}
-                    <Button onPress={pressing}>Reset</Button>
-                    <Button onPress={pressing}>Start</Button>
+                    <Button onPress={resetNumberHandler}>Reset</Button>
+                    <Button onPress={startHandler}>Start</Button>
                 </View>
             </View>
         </View>
