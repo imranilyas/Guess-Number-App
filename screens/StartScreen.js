@@ -36,11 +36,11 @@ const StartScreen = () => {
             <View style={styles.cardContainer}>
                 {/* Contains the guess number */}
                 {/* Input for number */}
-                <Text>Enter a Number</Text>
+                <Text style={styles.enterNumberText}>Enter a Number</Text>
                 <View style={styles.textContainer}>
                     <TextInput value={myNumber} onChangeText={enterNumberHandler} 
                     keyboardType='number-pad' keyboardAppearance='dark' maxLength={2} 
-                    style={styles.input} selectionColor='white'/>
+                    style={styles.input} selectionColor='#cccccc'/>
                 </View>
                 <View style = {styles.btnContainer}>
                     {/* Contains the buttons in a row */}
@@ -54,10 +54,24 @@ const StartScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-
+        flex: 1,
     },
 
-    cardContainer: {},
+    cardContainer: {
+        backgroundColor: 'hsl(231, 100%, 19%)',
+        borderRadius: 10,
+        borderColor: 'white',
+        // borderWidth: 2
+        paddingVertical: 10,
+        marginTop: 20,
+    },
+
+    enterNumberText: {
+        textAlign: 'center',
+        fontSize: 28,
+        color: 'white',
+        padding: 20,
+    },
 
     textContainer: {
         borderBottomColor: 'white',
@@ -78,6 +92,7 @@ const styles = StyleSheet.create({
     btnContainer: {
         justifyContent: 'space-evenly',
         flexDirection: 'row',
+        marginVertical: 15
     }
 });
 

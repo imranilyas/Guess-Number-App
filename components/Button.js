@@ -12,7 +12,7 @@ const Button = ({children, onPress}) => {
 
 const styles = StyleSheet.create({
     btnContainer: {
-        backgroundColor: 'hsl(231, 100%, 19%)',
+        backgroundColor: '#00b3bd',
         alignSelf: 'center',
         borderRadius: 10000,
         flex: 1,
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     },
 
     btnPressed: {
-        backgroundColor: 'hsl(230, 100%, 26%)',
+        backgroundColor: '#008c93',
         borderRadius: 10000
     },
 
