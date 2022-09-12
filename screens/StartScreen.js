@@ -3,6 +3,7 @@ import {View, StyleSheet, Text, TextInput, Alert} from 'react-native';
 
 import Button from '../components/Button';
 import Title from '../components/Title';
+import Card from '../components/Card';
 
 const StartScreen = () => {
 
@@ -33,7 +34,7 @@ const StartScreen = () => {
     return (
         <View style = {styles.container}>
             <Title>Welcome Player</Title>
-            <View style={styles.cardContainer}>
+            <Card>
                 {/* Contains the guess number */}
                 {/* Input for number */}
                 <Text style={styles.enterNumberText}>Enter a Number</Text>
@@ -47,7 +48,7 @@ const StartScreen = () => {
                     <Button onPress={resetNumberHandler}>Reset</Button>
                     <Button onPress={startHandler}>Start</Button>
                 </View>
-            </View>
+            </Card>
         </View>
     );
 }
@@ -55,15 +56,6 @@ const StartScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-
-    cardContainer: {
-        backgroundColor: 'hsl(231, 100%, 19%)',
-        borderRadius: 10,
-        borderColor: 'white',
-        // borderWidth: 2
-        paddingVertical: 10,
-        marginTop: 20,
     },
 
     enterNumberText: {
