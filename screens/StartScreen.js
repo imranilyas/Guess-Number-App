@@ -5,7 +5,7 @@ import Button from '../components/Button';
 import Title from '../components/Title';
 import Card from '../components/Card';
 
-const StartScreen = () => {
+const StartScreen = (props) => {
 
     const [myNumber, setMyNumber] = useState('');
 
@@ -29,6 +29,7 @@ const StartScreen = () => {
             );
         }
         let n = Number(myNumber);
+        props.setNumberHandler(n);
     }
 
     return (
