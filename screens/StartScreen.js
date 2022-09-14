@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     btnContainer: {
         justifyContent: 'space-evenly',
         flexDirection: 'row',
-        marginVertical: 15
+        marginVertical: 10
     }
 });
 

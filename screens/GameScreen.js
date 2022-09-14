@@ -1,22 +1,101 @@
-import {Text, View, StyleSheet, Alert, FlatList} from 'react-native';
+import {Text, View, StyleSheet, Alert} from 'react-native';
+import { Feather } from '@expo/vector-icons'; 
 
-const GameScreen = () => {
+import Button from '../components/Button';
+import Card from '../components/Card';
+import Title from '../components/Title';
+import { useEffect, useState } from 'react';
+
+let min = 1;
+let max = 99;
+let current = 0;
+
+const firstNumber = (first) => {
+    current = Math.floor(Math.random() * 98 + 1);
+    if(current === first) {
+        return firstNumber(first);
+    } else {
+        return current;
+    }
+} 
+
+const GameScreen = ({initialNumber}) => {
+
+    const [curr, setCurr] = useState(0);
+
+    const guessHandler = (str) => {
+        if(str === 'higher')  {
+            min = current + 1;
+            // recalculate current
+        } else if(str === 'lower') {
+            max = current - 1;
+        }
+        current = min + Math.floor(Math.random() * (max-min));
+        setCurr(current);
+    }
+
+    useEffect(() => {
+        setCurr(firstNumber(initialNumber));
+    }, [])
+
+    useEffect(() => {
+        if(curr === firstNumber) {
+            console.log(true);
+        }
+    }, [curr])
+
     return (
-        <View>
-            <Text>Title: GameScreen</Text>
-            <View>
-                {/* Contains the guess number view */}
-                <View>
-                    {/* Contains buttons in a row for higher or lower guess */}
+        <View style = {styles.container}>
+            <Title>Game Screen</Title>
+            <Card>
+                <Text style = {styles.cardTitle}>Higher or Lower</Text>
+
+                <View style={styles.guessNum}>
+                    {/* Contains the guess number view */}
+                    <Text style={styles.text}>{curr}</Text>
                 </View>
-            </View>
+
+                <View style = {styles.btnContainer}>
+                    {/* Contains buttons in a row for higher or lower guess */}
+                    <Button onPress={guessHandler.bind(this, 'lower')}><Feather name = 'minus' color='white' size = {20}/></Button>
+                    <Button onPress={guessHandler.bind(this, 'higher')}><Feather name = 'plus' color='white' size = {20}/></Button>
+                </View>
+            </Card>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+    },
 
+    cardTitle: {
+        textAlign: 'center',
+        fontSize: 28,
+        color: 'white',
+        padding: 20,
+    },
+
+    guessNum: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 4,
+        alignSelf: 'center',
+        minWidth: '15%',
+        marginBottom: 20,
+    },
+
+    text: {
+        textAlign: 'center',
+        fontSize: 20,
+        color: 'white',
+        padding: 10,
+    },
+
+    btnContainer: {
+        justifyContent: 'space-evenly',
+        flexDirection: 'row',
+        marginVertical: 10
     }
 });
 
