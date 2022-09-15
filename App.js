@@ -26,7 +26,7 @@ export default function App() {
     if(guessed) {
       currentScreen = <EndGameScreen />
     } else {
-      currentScreen = <GameScreen initialNumber={myNumber} guessHandler = {setGuessedHandler} />
+      currentScreen = <GameScreen initialNumber={myNumber} guessHandlerProp = {setGuessedHandler} />
     }
   }
 

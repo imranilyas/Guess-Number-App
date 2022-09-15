@@ -19,7 +19,7 @@ const firstNumber = (first) => {
     }
 } 
 
-const GameScreen = ({initialNumber}) => {
+const GameScreen = ({initialNumber, guessHandlerProp}) => {
 
     const [curr, setCurr] = useState(0);
 
@@ -36,13 +36,14 @@ const GameScreen = ({initialNumber}) => {
 
     useEffect(() => {
         setCurr(firstNumber(initialNumber));
-    }, [])
+    }, [initialNumber])
 
     useEffect(() => {
-        if(curr === firstNumber) {
-            console.log(true);
+        if(curr === initialNumber) {
+            guessHandlerProp()
         }
-    }, [curr])
+        console.log("useEffect ran");
+    }, [curr, initialNumber])
 
     return (
         <View style = {styles.container}>

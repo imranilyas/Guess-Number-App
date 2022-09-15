@@ -17,8 +17,6 @@ const StartScreen = (props) => {
         setMyNumber('');
     }
 
-    //! Will eventually switch to GameScreen by passing number
-    //! Must add alerts
     const startHandler = () => {
         console.log("Start the game");
         if(isNaN(myNumber) || myNumber <= 0 || myNumber > 99) {
