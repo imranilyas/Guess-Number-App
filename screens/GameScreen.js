@@ -11,7 +11,7 @@ let max = 99;
 let current = 0;
 
 const firstNumber = (first) => {
-    current = Math.floor(Math.random() * 98 + 1);
+    current = Math.floor(Math.random() * 99 + 1);
     if(current === first) {
         return firstNumber(first);
     } else {
@@ -24,6 +24,14 @@ const GameScreen = ({initialNumber, guessHandlerProp}) => {
     const [curr, setCurr] = useState(0);
 
     const guessHandler = (str) => {
+        if((str === 'higher' && current > initialNumber) || (str === 'lower' && current < initialNumber)) {
+            Alert.alert(
+                'Incorrect Button',
+                `Your number is not ${str} than the current guess.`,
+                [{text: 'Be Honest', style: 'cancel'}]
+            );
+            return; 
+        }
         if(str === 'higher')  {
             min = current + 1;
             // recalculate current
