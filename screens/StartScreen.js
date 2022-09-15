@@ -25,6 +25,7 @@ const StartScreen = (props) => {
                 'Invalid Number', 'Please enter a number between 1 and 99',
                 [{text: 'Dismiss', onPress: resetNumberHandler, style: 'cancel'}]
             );
+            return;
         }
         let n = Number(myNumber);
         props.setNumberHandler(n);
