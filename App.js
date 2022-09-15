@@ -9,16 +9,25 @@ import { useEffect, useState } from 'react';
 
 export default function App() {
 
+  const [guessed, setGuessed] = useState(false);
   const [myNumber, setMyNumber] = useState(0);
 
   const setNumberHandler = (element) => {
     setMyNumber(element);
   }
 
+  const setGuessedHandler = () => {
+    setGuessed(true);
+  }
+
   let currentScreen = <StartScreen setNumberHandler = {setNumberHandler} />
 
   if(myNumber) {
-    currentScreen = <GameScreen initialNumber={myNumber} />
+    if(guessed) {
+      currentScreen = <EndGameScreen />
+    } else {
+      currentScreen = <GameScreen initialNumber={myNumber} guessHandler = {setGuessedHandler} />
+    }
   }
 
   // const gameScreenHandler = () => {
