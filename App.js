@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import StartScreen from './screens/StartScreen';
 import GameScreen from './screens/GameScreen';
 import EndGameScreen from './screens/EndGameScreen';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
 export default function App() {
@@ -17,33 +17,23 @@ export default function App() {
   }
 
   const setGuessedHandler = () => {
-    setGuessed(true);
+    if(!guessed) {
+      setGuessed(true);
+    } else {
+      setMyNumber(0);
+      setGuessed(false);
+    }
   }
 
   let currentScreen = <StartScreen setNumberHandler = {setNumberHandler} />
 
   if(myNumber) {
     if(guessed) {
-      currentScreen = <EndGameScreen />
+      currentScreen = <EndGameScreen myNumber={myNumber} guessHandlerProp={setGuessedHandler}/>
     } else {
       currentScreen = <GameScreen initialNumber={myNumber} guessHandlerProp = {setGuessedHandler} />
     }
   }
-
-  // const gameScreenHandler = () => {
-  //   currentScreen = <GameScreen initialNumber = {myNumber}/>
-  // }
-
-  // const endGameScreenHandler = () => {
-  //   currentScreen = <EndGameScreen />
-  // }
-
-  // useEffect(() => {
-  //   console.log(myNumber);
-  //   if(myNumber > 0) {
-  //     currentScreen = <GameScreen initialNumber={myNumber} />
-  //   }
-  // }, [currentScreen, myNumber])
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
