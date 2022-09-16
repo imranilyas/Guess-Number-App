@@ -14,7 +14,7 @@ const EndGameScreen = ({myNumber, guessHandlerProp}) => {
             <Text style={styles.text}>Your number is <Text style={styles.keyText}>{myNumber}</Text>. It took <Text style={styles.keyText}>{"__"}</Text> rounds to guess your number.</Text>
 
             <View style={styles.btnContainer}>
-                <Button onPress={guessHandlerProp}>Play Again</Button>
+                <Button onPress={guessHandlerProp} style={styles.btnStyle}>Play Again</Button>
             </View>
 
         </View>
@@ -57,6 +57,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         position: 'absolute',
         bottom: 0,
+    },
+
+    btnStyle: {
+        backgroundColor: 'hsl(231, 100%, 19%)'
     }
 });
 
