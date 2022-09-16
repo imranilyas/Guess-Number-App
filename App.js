@@ -11,6 +11,7 @@ export default function App() {
 
   const [guessed, setGuessed] = useState(false);
   const [myNumber, setMyNumber] = useState(0);
+  const [rounds, setRounds] = useState(0);
 
   const setNumberHandler = (element) => {
     setMyNumber(element);
@@ -23,15 +24,19 @@ export default function App() {
       setMyNumber(0);
       setGuessed(false);
     }
+  };
+
+  const roundHandler = (element) => {
+    setRounds(element);
   }
 
   let currentScreen = <StartScreen setNumberHandler = {setNumberHandler} />
 
   if(myNumber) {
     if(guessed) {
-      currentScreen = <EndGameScreen myNumber={myNumber} guessHandlerProp={setGuessedHandler}/>
+      currentScreen = <EndGameScreen myNumber={myNumber} guessHandlerProp={setGuessedHandler} rounds={rounds}/>
     } else {
-      currentScreen = <GameScreen initialNumber={myNumber} guessHandlerProp = {setGuessedHandler} />
+      currentScreen = <GameScreen initialNumber={myNumber} guessHandlerProp = {setGuessedHandler} roundHandler={roundHandler} />
     }
   }
 

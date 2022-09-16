@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 let min = 1;
 let max = 99;
 let current = 0;
+let rounds = 0;
 
 const firstNumber = (first) => {
     current = Math.floor(Math.random() * 99 + 1);
@@ -19,7 +20,7 @@ const firstNumber = (first) => {
     }
 } 
 
-const GameScreen = ({initialNumber, guessHandlerProp}) => {
+const GameScreen = ({initialNumber, guessHandlerProp, roundHandler}) => {
 
     const [curr, setCurr] = useState(0);
 
@@ -44,14 +45,19 @@ const GameScreen = ({initialNumber, guessHandlerProp}) => {
 
     useEffect(() => {
         setCurr(firstNumber(initialNumber));
+        console.log("First useEffect");
     }, [initialNumber])
 
     useEffect(() => {
+        rounds++;
+        console.log(rounds);
         if(curr === initialNumber) {
+            roundHandler(rounds);
+            rounds = 0;
             guessHandlerProp()
         }
         console.log("useEffect ran");
-    }, [curr, initialNumber])
+    }, [min, max])
 
     return (
         <View style = {styles.container}>
