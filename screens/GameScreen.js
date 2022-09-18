@@ -1,9 +1,11 @@
-import {Text, View, StyleSheet, Alert} from 'react-native';
+import {Text, View, StyleSheet, Alert, FlatList} from 'react-native';
 import { Feather } from '@expo/vector-icons'; 
 
 import Button from '../components/Button';
 import Card from '../components/Card';
 import Title from '../components/Title';
+import SpecificItem from '../components/SpecificItem';
+
 import { useEffect, useState } from 'react';
 
 let min = 1;
@@ -23,6 +25,13 @@ const firstNumber = (first) => {
 const GameScreen = ({initialNumber, guessHandlerProp, roundHandler}) => {
 
     const [curr, setCurr] = useState(0);
+    const [prevGuesses, setPrevGuesses] = useState([]);
+
+    const guessListHandler = (guess) => {
+        setPrevGuesses(prev => [
+            {guess: guess, round: rounds}, ...prev
+        ]);
+    }
 
     const guessHandler = (str) => {
         if((str === 'higher' && current > initialNumber) || (str === 'lower' && current < initialNumber)) {
@@ -39,6 +48,7 @@ const GameScreen = ({initialNumber, guessHandlerProp, roundHandler}) => {
         } else if(str === 'lower') {
             max = current - 1;
         }
+        guessListHandler(curr);
         current = min + Math.floor(Math.random() * (max-min));
         setCurr(current);
     }
@@ -76,6 +86,16 @@ const GameScreen = ({initialNumber, guessHandlerProp, roundHandler}) => {
                     <Button onPress={guessHandler.bind(this, 'higher')}><Feather name = 'plus' color='white' size = {20}/></Button>
                 </View>
             </Card>
+                {/* FlatList */}
+                <FlatList 
+                    data={prevGuesses}
+                    renderItem={(element) => {
+                        return(
+                            <SpecificItem round={element.item.round}>{element.item.guess}</SpecificItem>
+                        )
+                    }}
+                    keyExtractor={(item) => {return item.round}}
+                />
         </View>
     );
 }
