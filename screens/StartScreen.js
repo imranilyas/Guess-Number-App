@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {View, StyleSheet, Text, TextInput, Alert} from 'react-native';
+import {View, StyleSheet, Text, TextInput, Alert, ScrollView, TouchableWithoutFeedback, Keyboard} from 'react-native';
 
 import Button from '../components/Button';
 import Title from '../components/Title';
@@ -33,22 +33,41 @@ const StartScreen = (props) => {
 
     return (
         <View style = {styles.container}>
-            <Title>Welcome Player</Title>
-            <Card>
-                {/* Contains the guess number */}
-                {/* Input for number */}
-                <Text style={styles.enterNumberText}>Enter a Number</Text>
-                <View style={styles.textContainer}>
-                    <TextInput value={myNumber} onChangeText={enterNumberHandler} 
-                    keyboardType='number-pad' keyboardAppearance='dark' maxLength={2} 
-                    style={styles.input} selectionColor='#cccccc'/>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View>
+                    <Title>Welcome Player</Title>
+                    <Card>
+                        {/* Contains the guess number */}
+                        {/* Input for number */}
+                        <Text style={styles.enterNumberText}>Enter a Number</Text>
+                        <View style={styles.textContainer}>
+                            <TextInput value={myNumber} onChangeText={enterNumberHandler} 
+                            keyboardType='number-pad' keyboardAppearance='dark' maxLength={2} 
+                            style={styles.input} selectionColor='#cccccc'/>
+                        </View>
+                        <View style = {styles.btnContainer}>
+                            {/* Contains the buttons in a row */}
+                            <Button onPress={resetNumberHandler}>Reset</Button>
+                            <Button onPress={startHandler}>Start</Button>
+                        </View>
+                    </Card>
                 </View>
-                <View style = {styles.btnContainer}>
-                    {/* Contains the buttons in a row */}
-                    <Button onPress={resetNumberHandler}>Reset</Button>
-                    <Button onPress={startHandler}>Start</Button>
-                </View>
-            </Card>
+            </TouchableWithoutFeedback>
+            {/* Will be replace with a flatlist */}
+            {/* <View>
+                <ScrollView style = {styles.scroll}>
+                    <Text>Something Dumb</Text>
+                    <Text>Something Dumb</Text>
+                    <Text>Something Dumb</Text>
+                    <Text>Something Dumb</Text>
+                    <Text>Something Dumb</Text>
+                    <Text>Something Dumb</Text>
+                    <Text>Something Dumb</Text>
+                    <Text>Something Dumb</Text>
+                    <Text>Something Dumb</Text>
+
+                </ScrollView>
+            </View> */}
         </View>
     );
 }
@@ -85,7 +104,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         flexDirection: 'row',
         marginVertical: 10
-    }
+    },
 });
 
 export default StartScreen;
