@@ -14,12 +14,10 @@ let current = 0;
 let rounds = 0;
 
 const firstNumber = (first) => {
-    current = Math.floor(Math.random() * 99 + 1);
-    if(current === first) {
-        return firstNumber(first);
-    } else {
-        return current;
-    }
+    do {
+        current = Math.floor(Math.random() * 99 + 1);
+    } while (current === first);
+    return current;
 } 
 
 const GameScreen = ({initialNumber, guessHandlerProp, roundHandler}) => {
@@ -87,6 +85,7 @@ const GameScreen = ({initialNumber, guessHandlerProp, roundHandler}) => {
                 </View>
             </Card>
                 {/* FlatList */}
+            <View style={styles.flatlistContainer}>
                 <FlatList 
                     data={prevGuesses}
                     renderItem={(element) => {
@@ -95,7 +94,10 @@ const GameScreen = ({initialNumber, guessHandlerProp, roundHandler}) => {
                         )
                     }}
                     keyExtractor={(item) => {return item.round}}
+                    alwaysBounceVertical={false}
+                    style={styles.list}
                 />
+            </View>
         </View>
     );
 }
@@ -131,7 +133,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         flexDirection: 'row',
         marginVertical: 10
-    }
+    },
+
+    flatlistContainer: {
+        marginTop: 10,
+        flex: 1,
+        marginBottom: -35
+    },
+
 });
 
 export default GameScreen;
