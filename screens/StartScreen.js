@@ -53,21 +53,6 @@ const StartScreen = (props) => {
                     </Card>
                 </View>
             </TouchableWithoutFeedback>
-            {/* Will be replace with a flatlist */}
-            {/* <View>
-                <ScrollView style = {styles.scroll}>
-                    <Text>Something Dumb</Text>
-                    <Text>Something Dumb</Text>
-                    <Text>Something Dumb</Text>
-                    <Text>Something Dumb</Text>
-                    <Text>Something Dumb</Text>
-                    <Text>Something Dumb</Text>
-                    <Text>Something Dumb</Text>
-                    <Text>Something Dumb</Text>
-                    <Text>Something Dumb</Text>
-
-                </ScrollView>
-            </View> */}
         </View>
     );
 }
