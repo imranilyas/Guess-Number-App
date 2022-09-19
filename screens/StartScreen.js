@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {View, StyleSheet, Text, TextInput, Alert, ScrollView, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {View, StyleSheet, Text, TextInput, Alert, TouchableWithoutFeedback, Keyboard} from 'react-native';
 
 import Button from '../components/Button';
 import Title from '../components/Title';

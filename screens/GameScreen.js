@@ -53,7 +53,6 @@ const GameScreen = ({initialNumber, guessHandlerProp, roundHandler}) => {
 
     useEffect(() => {
         setCurr(firstNumber(initialNumber));
-        console.log("First useEffect");
     }, [initialNumber])
 
     useEffect(() => {
@@ -62,9 +61,10 @@ const GameScreen = ({initialNumber, guessHandlerProp, roundHandler}) => {
         if(curr === initialNumber) {
             roundHandler(rounds);
             rounds = 0;
+            min = 1;
+            max = 99;
             guessHandlerProp()
         }
-        console.log("useEffect ran");
     }, [min, max])
 
     return (
